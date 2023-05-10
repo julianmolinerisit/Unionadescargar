@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="../public/styles.css">
+
+</head>
+<body>
+    <h1>Formulario</h1>
+    <form id="my-form" method="post" action="/submit">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        <label for="escenario">Escenario:</label>
+        <input type="text" id="escenario" name="escenario"><br><br>
+        <button type="submit" id="submit-btn">Enviar</button>
+    </form>
+    <div id="modal" style="display: none;">
+        <div id="modal-content">
+            <h2>Cargando...</h2>
+            <div id="loader"></div>
+        </div>
+    </div>
+    <script>
+        const form = document.querySelector('#my-form');
+        const submitBtn = document.querySelector('#submit-btn');
+        const modal = document.querySelector('#modal');
+
+        submitBtn.addEventListener('click', async () => {
+            modal.style.display = 'flex';
+
+            try {
+                await fetch('/submit', {
+                    method: 'POST',
+                    body: new FormData(form)
+                });
+
+                window.location.href = '/';
+
+            } catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

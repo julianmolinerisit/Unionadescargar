@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Datos almacenados</title>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/data.css">
+
+
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  <h1>Datos almacenados</h1>
+  <ul class="estilo-lista">
+    <% for (var i = data.length - 1; i >= 0; i--) { %>
+      <li class="elemento-lista"><p class="data-paragraph"> <strong>Personaje</strong>: <%= data[i].name %></p></li><br>
+      <li class="elemento-lista"><p class="data-paragraph"> <strong>Escenario</strong>: <%= data[i].escenario %></p></li>      
+    <% } %>
+  </ul>
+</body>
+</html>
